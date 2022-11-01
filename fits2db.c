@@ -124,7 +124,7 @@
 #define DEF_ONAME               "root"
 
 #define DEF_FORMAT              TAB_POSTGRES
-#define DEF_DELIMITER           ','
+#define DEF_DELIMITER           '|'
 #define DEF_QUOTE               '"'
 #define DEF_MODE                "w+"
 
@@ -424,16 +424,16 @@ main (int argc, char **argv)
 
 	    case '5':  if (optval[0] == 'm') {          // MySQL ouptut
                             format = TAB_MYSQL;
-                            delimiter = ',';
-                            arr_delimiter = ',';
+                            delimiter = '|';
+                            arr_delimiter = '|';
                             do_quote = 1;
                             quote_char = '"';
                        } else if (optval[0] == 's') {   // SQLite ouptut
                            format = TAB_SQLITE;
                        } else {                         // Postgres (default)
                             format = TAB_POSTGRES;
-                            delimiter = ',';
-                            arr_delimiter = ',';
+                            delimiter = '|';
+                            arr_delimiter = '|';
                             do_quote = 0;
                        }
                        break;
@@ -1379,7 +1379,7 @@ dl_printSQLHdr (char *tablename, fitsfile *fptr, int firstcol, int lastcol,
         if (format == TAB_POSTGRES) {
             fprintf (ofd, "\nCOPY %s (", tablename);
             dl_printHdr (firstcol, lastcol, ofd);
-            fprintf (ofd, ") FROM stdin DELIMITER '%c';\n", delimiter);
+            fprintf (ofd, ") FROM stdin (DELIMITER '%c', NULL 'NULL');\n", delimiter);
         } else if (format == TAB_MYSQL || format == TAB_SQLITE) {
             fprintf (ofd, "\nINSERT INTO %s (", tablename);
             dl_printHdr (firstcol, lastcol, ofd);

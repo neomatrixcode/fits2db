@@ -652,6 +652,7 @@ main (int argc, char **argv)
     if (oname) free (oname);
     if (extname) free (extname);
     if (tablename) free (tablename);
+    if (ip) free (ip);
     if (ifstart) free ((void *) ifstart);
 
     dl_paramFree (argc, pargv);
@@ -740,6 +741,7 @@ dl_fits2db (char *iname, char *oname, int filenum, int bnum, int nfiles)
 
                 if (!tablename) 
                     tablename = dl_makeTableName (iname);
+                if (debug) fprintf (stderr,"tablename=%s\n",tablename);
 
                 if (format == TAB_DELIMITED)
                     dl_printHdr (firstcol, lastcol, ofd);

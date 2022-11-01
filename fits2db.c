@@ -2542,13 +2542,19 @@ sstrip (char *s)
     char *ip = s;
 
     if (!s || !*s)
-        return "NULL";
+        return s;
 
     /* Remove trailing spaces.  */
     for (ip=(s + strlen(s) - 1); *ip == ' ' && ip > s; ip--) *ip = '\0';
 
     /* Remove leading spaces.   */
     for (ip=s; *ip && *ip == ' '; ip++) ;
+
+    size_t lens = strlen(ip);
+    //fprintf (stderr, "datavalue %s len %d\n", ip, lens);
+    if(lens==0){
+        return "NULL";
+    }
 
     return (ip);
 }

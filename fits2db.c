@@ -652,7 +652,6 @@ main (int argc, char **argv)
     if (oname) free (oname);
     if (extname) free (extname);
     if (tablename) free (tablename);
-    if (ip) free (ip);
     if (ifstart) free ((void *) ifstart);
 
     dl_paramFree (argc, pargv);

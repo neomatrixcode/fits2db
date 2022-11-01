@@ -2542,7 +2542,7 @@ sstrip (char *s)
     char *ip = s;
 
     if (!s || !*s)
-        return s;
+        return "NULL";
 
     /* Remove trailing spaces.  */
     for (ip=(s + strlen(s) - 1); *ip == ' ' && ip > s; ip--) *ip = '\0';

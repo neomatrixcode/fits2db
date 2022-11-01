@@ -343,7 +343,6 @@ main (int argc, char **argv)
     char **iflist = NULL, **ifstart = NULL;
     char  *iname = NULL, *oname = NULL, tmp[2*SZ_PATH];
     int    i, ch = 0, status = 0, pos = 0;
-    free (tablename);
 
 
     /*  Initialize local task values.
@@ -739,8 +738,7 @@ dl_fits2db (char *iname, char *oname, int filenum, int bnum, int nfiles)
             if (filenum == 0 || !concat) {
 		dl_getColInfo (fptr, firstcol, lastcol);
 
-                if (!tablename) 
-                    tablename = dl_makeTableName (iname);
+                tablename = dl_makeTableName (iname);
                 if (debug) fprintf (stderr,"tablename=%s\n",tablename);
 
                 if (format == TAB_DELIMITED)

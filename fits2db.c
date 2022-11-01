@@ -1188,6 +1188,11 @@ dl_getOutputCols (fitsfile *fptr, int firstcol, int lastcol)
         numOutCols++;
     }
 
+    for (i=1; i <= numOutCols; i++) {
+        ocol = (ColPtr) &outColumns[i];
+        sprintf (ocol->colname, "\"%s\"", ocol->colname);
+    }
+
 
     if (debug) {
         fprintf (stderr, "Output Columns [%d]:\n", numOutCols);
@@ -2327,7 +2332,12 @@ dl_makeTableName (char *fname)
             *np = '_';
     }
 
-    return (ip);                        // return the start of the filename
+    result[0] = '\0';
+    strcat(result, "\"");
+    strcat(result, ip);
+    strcat(result, "\"");
+
+    return (result);                        // return the start of the filename
 }
 
 

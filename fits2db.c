@@ -1189,8 +1189,8 @@ dl_getOutputCols (fitsfile *fptr, int firstcol, int lastcol)
     }
 
     for (i=1; i <= numOutCols; i++) {
-        myocol = (ColPtr) &outColumns[i];
-        sprintf (myocol->colname, "\"%s\"", myocol->colname);
+        ocol = (ColPtr) &outColumns[i];
+        sprintf (ocol->colname, "\"%s\"", ocol->colname);
     }
 
 
@@ -2332,7 +2332,8 @@ dl_makeTableName (char *fname)
             *np = '_';
     }
 
-    char result[0] = '\0';
+    char result[100];
+    result[0] = '\0';
     strcat(result, "\"");
     strcat(result, ip);
     strcat(result, "\"");

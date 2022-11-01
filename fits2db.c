@@ -343,6 +343,7 @@ main (int argc, char **argv)
     char **iflist = NULL, **ifstart = NULL;
     char  *iname = NULL, *oname = NULL, tmp[2*SZ_PATH];
     int    i, ch = 0, status = 0, pos = 0;
+    free (tablename);
 
 
     /*  Initialize local task values.

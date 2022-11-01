@@ -1190,7 +1190,7 @@ dl_getOutputCols (fitsfile *fptr, int firstcol, int lastcol)
 
     for (i=1; i <= numOutCols; i++) {
         ocol = (ColPtr) &outColumns[i];
-        sprintf (ocol->colname, "\"%s\"", ocol->colname);
+        append("\"",ocol->colname,"\"")
     }
 
 
@@ -1202,6 +1202,22 @@ dl_getOutputCols (fitsfile *fptr, int firstcol, int lastcol)
                 ocol->colname, ocol->coltype);
         }
     }
+}
+
+char *append(char before, char *str, char after)
+{
+    size_t len = strlen(str);
+    if(before)
+    {
+        memmove(str + 1, str, ++len);
+        *str = before;
+    }
+    if(after)
+    {
+        str[len] = after;
+        str[len + 1] = 0;
+    }
+    return str;
 }
 
 
@@ -2332,7 +2348,7 @@ dl_makeTableName (char *fname)
             *np = '_';
     }
 
-    snprintf(ip, sizeof ip, "\"%s\"", ip);
+    append("\"",ip,"\"")
 
     return (ip);                        // return the start of the filename
 }

@@ -2332,13 +2332,9 @@ dl_makeTableName (char *fname)
             *np = '_';
     }
 
-    char result[100];
-    result[0] = '\0';
-    strcat(result, "\"");
-    strcat(result, ip);
-    strcat(result, "\"");
+    snprintf(ip, sizeof ip, "\"%s\"", ip);
 
-    return (result);                        // return the start of the filename
+    return (ip);                        // return the start of the filename
 }
 
 

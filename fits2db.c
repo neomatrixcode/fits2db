@@ -329,7 +329,7 @@ static void bswap8 (char *a, int aoff, char *b, int boff, int nbytes);
 static char *sstrip (char *s);
 static char *time_stamp (void);
 static int is_swapped (void);
-
+static char *append(char before, char *str, char after);
 
 
 /**
@@ -1204,7 +1204,8 @@ dl_getOutputCols (fitsfile *fptr, int firstcol, int lastcol)
     }
 }
 
-char *append(char before, char *str, char after)
+static char *
+append (char before, char *str, char after)
 {
     size_t len = strlen(str);
     if(before)
